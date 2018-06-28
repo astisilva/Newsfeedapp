@@ -50,7 +50,7 @@ public final class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link News}s
-        List<News> news = extractFeatureFromJson(jsonResponse);
+        List<News> news = extractResultsFromJson(jsonResponse);
 
         // Return the list of {@link News}s
         return news;
@@ -135,14 +135,14 @@ public final class QueryUtils {
      * Return a list of {@link News} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<News> extractFeatureFromJson(String newsJSON) {
+    private static List<News> extractResultsFromJson(String newsJSON) {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding news to
-        List<News> newsTwo = new ArrayList<>();
+        List<News> newsList = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -150,45 +150,29 @@ public final class QueryUtils {
         try {
 
             // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
-            // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or news).
-            JSONArray newsArray = baseJsonResponse.getJSONArray("features");
+            JSONObject baseJsonResponse = new JSONObject(newsJSON);
+            JSONObject NewsJson = baseJsonResponse.getJSONObject("response");
+            JSONArray newsArray = NewsJson.getJSONArray("results");
+
 
             // For each news in the newsArray, create an {@link News} object
             for (int i = 0; i < newsArray.length(); i++) {
+                String SectionName = newsArray.getJSONObject(i).getString("sectionName");
+                String webPublicationDate = newsArray.getJSONObject(i).getString("webPublicationDate");
+                String webTitle = newsArray.getJSONObject(i).getString("webTitle");
+                String webUrl = newsArray.getJSONObject(i).getString("webUrl");
+                JSONArray tags =newsArray.getJSONObject(i).getJSONArray("tags");
 
-                // Get a single news at position i within the list of news
-                JSONObject currentNews = newsArray.getJSONObject(i);
-
-                // For a given news, extract the JSONObject associated with the
-                // key called "properties", which represents a list of all properties
-                // for that news.
-                JSONObject properties = currentNews.getJSONObject("properties");
-
-                // Extract the value for the key called "title"
-                String title = properties.getString("title");
-
-                // Extract the value for the key called "author"
-                String author = properties.getString("author");
-
-                // Extract the value for the key called "date"
-                String date = properties.getString("date");
-
-                // Extract the value for the key called "section"
-                String section = properties.getString("section");
-
-                // Extract the value for the key called "section"
-                String url = properties.getString("url");
-
-                // Create a new {@link News} object with the magnitude, location, time,
-                // and url from the JSON response.
-                News news = new News(title, author, date, section, url);
-
-                // Add the new {@link News} to the list of news.
-                newsTwo.add(news);
+                String author="";
+                if (tags.length()>0) {
+                    author =tags.getJSONObject(0).getString("webTitle");
+                }
+                News news = new News(webTitle, SectionName, webUrl, webPublicationDate, author);
+                newsList.add(news);
             }
+
+
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
@@ -198,7 +182,7 @@ public final class QueryUtils {
         }
 
         // Return the list of news
-        return newsTwo;
+        return newsList;
     }
 
 }
