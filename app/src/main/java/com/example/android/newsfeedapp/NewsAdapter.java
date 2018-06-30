@@ -68,12 +68,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
         sectionView.setText(currentNews.getSection());
 
 
+
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         // Format the date string (i.e. "Mar 3, 1984")
-        String formattedDate = formatDate(currentNews.getDate());
         // Display the date of the current news in that TextView
-        dateView.setText(formattedDate);
+        dateView.setText(currentNews.getDate());
 
 
         // Return the list item view that is now showing the appropriate data
@@ -92,15 +92,14 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
     }
 
+
     /**
      * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     * @param dateObject
      */
-    private String formatDate(String dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
         return dateFormat.format(dateObject);
     }
 
-
-}
+ }
 

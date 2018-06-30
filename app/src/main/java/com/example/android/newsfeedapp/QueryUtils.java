@@ -158,7 +158,8 @@ public final class QueryUtils {
 
             // For each news in the newsArray, create an {@link News} object
             for (int i = 0; i < newsArray.length(); i++) {
-                String SectionName = newsArray.getJSONObject(i).getString("sectionName");
+                JSONObject currentArticle = newsArray.getJSONObject(i);
+                String SectionName = currentArticle.getString("sectionName").trim();
                 String webPublicationDate = newsArray.getJSONObject(i).getString("webPublicationDate");
                 String webTitle = newsArray.getJSONObject(i).getString("webTitle");
                 String webUrl = newsArray.getJSONObject(i).getString("webUrl");
@@ -168,7 +169,7 @@ public final class QueryUtils {
                 if (tags.length()>0) {
                     author =tags.getJSONObject(0).getString("webTitle");
                 }
-                News news = new News(webTitle, SectionName, webUrl, webPublicationDate, author);
+                News news = new News(webTitle, author, webPublicationDate, SectionName, webUrl);
                 newsList.add(news);
             }
 

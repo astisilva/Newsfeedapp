@@ -30,7 +30,8 @@ public class NewsActivity extends AppCompatActivity
 
     /** URL for news data  */
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test";
+            "https://content.guardianapis.com/search?show-tags=contributor&from-date=2015-01-01&q=science&api-key=76b77837-8fda-4ee6-9e8d-9d3bedaaba62";
+
 
 
     /**
