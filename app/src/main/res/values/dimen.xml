@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_square">16dp</dimen>
+    <dimen name="margin_square">16dp</dimen>
+
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_details">12sp</dimen>
+
+</resources>
