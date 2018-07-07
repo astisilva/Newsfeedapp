@@ -4,10 +4,51 @@
 
     <string name="settings_title">News feed app Settings</string>
 
+    <string name="settings_menu_item">Settings</string>
+
     <!-- Text to display in the list when there are no new news [CHAR LIMIT=NONE] -->
     <string name="no_news">No news found.</string>
 
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
-    <string name="no_internet_connection">No internet connection.</string>
+    <string name="no_internet_connection">No news available found, please come back later and try again!</string>
+
+
+
+    <!-- Label for science news [CHAR LIMIT=20]
+    <string name="settings_science_label">science</string>
+    <string name="settings_science_value" translatable="false">science</string>
+
+    <string name="settings_business_label">Business</string>
+    <string name="settings_business_value" >Business</string>
+   -->
+
+    <string name="settings_section_label">Order by fadfa</string>
+    <string name="settings_section_key" translatable="false">Section</string>
+    <string name="settings_section_default" translatable="false">Music</string>
+
+
+
+
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_order_by_label">Order By </string>
+    <string name="settings_order_by_key" translatable="false">order_by test ämnen</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_music_value</string>
+
+    <!-- Label for order-by magnitude option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_music_label">Music</string>
+    <string name="settings_order_by_music_value" translatable="false">music</string>
+
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_politics_label">Politics</string>
+    <string name="settings_order_by_politics_value" translatable="false">politics</string>
+
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_economic_label">Economic</string>
+    <string name="settings_order_by_economic_value" translatable="false">economic</string>
+
+    !-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_technologi_label">Technologi</string>
+    <string name="settings_order_by_technologi_value" translatable="false">technologi</string>
 
 </resources>

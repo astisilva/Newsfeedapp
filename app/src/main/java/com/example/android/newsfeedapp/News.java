@@ -20,33 +20,43 @@ package com.example.android.newsfeedapp;
  */
 
 
-
 public class News {
 
 
-    /** Title of the news */
+    /**
+     * Title of the news
+     */
     private String mTitle;
 
-    /** The writer of the news */
+    /**
+     * The writer of the news
+     */
     private String mAuthor;
 
-    /** Date when the news is written */
+    /**
+     * Date when the news is written
+     */
     private String mDate;
 
-    /** Thw News section */
+    /**
+     * Thw News section
+     */
     private String mSection;
 
 
-    /** Website URL of the news */
+    /**
+     * Website URL of the news
+     */
     private String mUrl;
 
     /**
      * Constructs a new {@link News} object.
-     *  @param title is the title of the news
-     * @param author the author of the news
-     * @param date is the date of the news
+     *
+     * @param title   is the title of the news
+     * @param author  the author of the news
+     * @param date    is the date of the news
      * @param section section of the news
-     * @param url is the website URL to find more details about the news
+     * @param url     is the website URL to find more details about the news
      */
     public News(String title, String author, String date, String section, String url) {
         mTitle = title;
@@ -56,6 +66,7 @@ public class News {
         mUrl = url;
 
     }
+
     /**
      * Returns the title.
      */
@@ -87,6 +98,8 @@ public class News {
     /**
      * Returns the website URL to find more information about News.
      */
-    public String getUrl() { return mUrl; }
+    public String getUrl() {
+        return mUrl;
+    }
 
 }

@@ -23,7 +23,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
@@ -83,9 +85,12 @@ public final class QueryUtils {
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try {
+
+            int tenThousen = 10000;
+            int fifteenThousen = 15000;
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(tenThousen /* milliseconds */);
+            urlConnection.setConnectTimeout(fifteenThousen /* milliseconds */);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -163,17 +168,15 @@ public final class QueryUtils {
                 String webPublicationDate = newsArray.getJSONObject(i).getString("webPublicationDate");
                 String webTitle = newsArray.getJSONObject(i).getString("webTitle");
                 String webUrl = newsArray.getJSONObject(i).getString("webUrl");
-                JSONArray tags =newsArray.getJSONObject(i).getJSONArray("tags");
+                JSONArray tags = newsArray.getJSONObject(i).getJSONArray("tags");
 
-                String author="";
-                if (tags.length()>0) {
-                    author =tags.getJSONObject(0).getString("webTitle");
+                String author = "";
+                if (tags.length() > 0) {
+                    author = tags.getJSONObject(0).getString("webTitle");
                 }
                 News news = new News(webTitle, author, webPublicationDate, SectionName, webUrl);
                 newsList.add(news);
             }
-
-
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,

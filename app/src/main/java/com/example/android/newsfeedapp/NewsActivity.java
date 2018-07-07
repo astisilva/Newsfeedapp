@@ -22,17 +22,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity
-        implements LoaderCallbacks<List<News>>/*,
-        SharedPreferences.OnSharedPreferenceChangeListener */{
+public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<List<News>> {
 
-    private static final String LOG_TAG = NewsActivity.class.getName();
 
-    /** URL for news data  */
+    /**
+     * URL for news data
+     */
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?show-tags=contributor&from-date=2015-01-01&q=science&api-key=76b77837-8fda-4ee6-9e8d-9d3bedaaba62";
-
-
+            "https://content.guardianapis.com/search";
 
     /**
      * Constant value for the news loader ID. We can choose any integer.
@@ -40,10 +37,14 @@ public class NewsActivity extends AppCompatActivity
      */
     private static final int NEWS_LOADER_ID = 1;
 
-    /** Adapter for the list of news */
+    /**
+     * Adapter for the list of news
+     */
     private NewsAdapter mAdapter;
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
     @Override
@@ -113,7 +114,29 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
-        return new NewsLoader(this, NEWS_REQUEST_URL);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String sectionSelect = sharedPrefs.getString(
+                getString(R.string.settings_section_key),
+                getString(R.string.settings_section_default));
+
+
+        String orderBy  = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
+        Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
+
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("tags", "contributor");
+        uriBuilder.appendQueryParameter("section", sectionSelect);
+                uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("from-date", "2015-01-01");
+        uriBuilder.appendQueryParameter("api-key", "76b77837-8fda-4ee6-9e8d-9d3bedaaba62");
+
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -132,7 +155,7 @@ public class NewsActivity extends AppCompatActivity
         // data set. This will trigger the ListView to update.
         if (news != null && !news.isEmpty()) {
             mAdapter.addAll(news);
-            //updateUi(news);
+            //  updateUi(news);
         }
     }
 
@@ -142,5 +165,22 @@ public class NewsActivity extends AppCompatActivity
         mAdapter.clear();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

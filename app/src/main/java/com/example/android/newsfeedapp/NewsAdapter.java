@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 /**
  * An {@link NewsAdapter} knows how to create a list item layout for each earthquake
  * in the data source (a list of {@link News} objects).
- *
+ * <p>
  * These list item layouts will be provided to an adapter view like ListView
  * to be displayed to the user.
  */
@@ -24,13 +27,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
      * The part of the location string from the News service that we use to determine
      * whether or not there is a location offset present ("5km N of Cairo, Egypt").
 
-    private static final String LOCATION_SEPARATOR = " of ";
-*/
+     private static final String LOCATION_SEPARATOR = " of ";
+     */
     /**
      * Constructs a new {@link NewsAdapter}.
      *
      * @param context of the app
-     * @param news is the list of news, which is the data source of the adapter
+     * @param news    is the list of news, which is the data source of the adapter
      */
     public NewsAdapter(Context context, List<News> news) {
         super(context, 0, news);
@@ -67,14 +70,33 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Display the location offset of the current earthquake in that TextView
         sectionView.setText(currentNews.getSection());
 
-
-
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
-        // Format the date string (i.e. "Mar 3, 1984")
-        // Display the date of the current news in that TextView
-        dateView.setText(currentNews.getDate());
+        // gets the Date and time of the news from the currentNews object and stores it in the variable date
+        String dateAndTime = currentNews.getDate();
 
+        // creates a new SimpleDateFormat object with the ISODateFormat that is uses in the Guardian API and stores
+        // in the variable dateTimeFormat
+        DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+
+        // creates a new SimpleDateFormat object with the format of the year that it should be shown and stores
+        // in the variable dateFormat
+        DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy, h:mm a");
+        // creates a new SimpleDateFormat object with the format of the time that it should be shown and stores
+
+        try {
+
+            // the dateTimeFormat from the currentNews object gets parsed and stored in the variable dateAndTimeParsed
+            Date dateAndTimeParsed = dateTimeFormat.parse(dateAndTime);
+            // the dateFormat becomes formatted
+            String dateString = dateFormat.format(dateAndTimeParsed);
+            // the timeFormat becomes formatted
+            //sets the date from the current news in the dateTextView with the right format
+            dateView.setText(dateString);
+
+        } catch (ParseException e) {
+
+        }
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
@@ -93,13 +115,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
     }
 
 
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-    private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
-        return dateFormat.format(dateObject);
-    }
-
  }
 
+/*Source
+https://stackoverflow.com/questions/4772425/change-date-format-in-a-java-string
+https://stackoverflow.com/questions/49752149/how-do-i-convert-2018-04-10t040000-000z-string-to-datetime
+and slack-people
+*/

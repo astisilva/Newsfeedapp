@@ -18,18 +18,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp"
-    android:paddingTop="16dp">
+    android:paddingEnd="@dimen/padding_square"
+    android:paddingLeft="@dimen/padding_square"
+    android:paddingRight="@dimen/padding_square"
+    android:paddingStart="@dimen/padding_square"
+    android:paddingTop="@dimen/padding_square">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/margin_square"
+        android:layout_marginStart="@dimen/margin_square"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -41,7 +41,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/textColorNews"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_title"
             tools:text="Title" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorNewsDetails"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_details"
             tools:text="Author" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorNewsDetails"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_details"
             tools:text="Mar 6, 2010" />
 
     </LinearLayout>
@@ -66,8 +66,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/margin_square"
+        android:layout_marginStart="@dimen/margin_square"
         android:orientation="vertical">
 
         <TextView
@@ -76,12 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:textColor="@color/textColorNewsDetails"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_details"
             tools:text="Section" />
-
-
-
-
 
     </LinearLayout>
 </LinearLayout>
