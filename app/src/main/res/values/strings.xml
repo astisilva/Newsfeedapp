@@ -20,13 +20,13 @@
 
     <string name="settings_business_label">Business</string>
     <string name="settings_business_value" >Business</string>
-
+   -->
 
     <string name="settings_section_label">Order by fadfa</string>
     <string name="settings_section_key" translatable="false">Section</string>
     <string name="settings_section_default" translatable="false">Music</string>
 
-    -->
+
 
 
 
@@ -48,7 +48,7 @@
     <string name="settings_order_by_economic_value" translatable="false">economic</string>
 
     !-- Label for order-by most recent option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_technologi_label">Technologi</string>
-    <string name="settings_order_by_technologi_value" translatable="false">technologi</string>
+    <string name="settings_order_by_technology_label">Technology</string>
+    <string name="settings_order_by_technology_value" translatable="false">technology</string>
 
 </resources>

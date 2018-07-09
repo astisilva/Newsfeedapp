@@ -29,7 +29,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
      * URL for news data
      */
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?show-tags=contributor&from-date=2015-01-01&q=science&api-key=76b77837-8fda-4ee6-9e8d-9d3bedaaba62";
+            "https://content.guardianapis.com/search";
 
     /**
      * Constant value for the news loader ID. We can choose any integer.
@@ -116,9 +116,9 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-       /* String sectionSelect = sharedPrefs.getString(
+       String sectionSelect = sharedPrefs.getString(
                 getString(R.string.settings_section_key),
-                getString(R.string.settings_section_default));*/
+                getString(R.string.settings_section_default));
 
 
         String orderBy  = sharedPrefs.getString(
@@ -130,9 +130,10 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("tags", "contributor");
-        //uriBuilder.appendQueryParameter("section", orderBy);
-        uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+       uriBuilder.appendQueryParameter("section", orderBy);
+        uriBuilder.appendQueryParameter("q", "music");
+        uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("from-date", "2015-01-01");
         uriBuilder.appendQueryParameter("api-key", "76b77837-8fda-4ee6-9e8d-9d3bedaaba62");
 
