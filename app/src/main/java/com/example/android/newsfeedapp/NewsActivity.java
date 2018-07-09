@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,27 +117,27 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-       String sectionSelect = sharedPrefs.getString(
+     /* String sectionSelect = sharedPrefs.getString(
                 getString(R.string.settings_section_key),
                 getString(R.string.settings_section_default));
-
-
+*/
         String orderBy  = sharedPrefs.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
+
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
 
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         uriBuilder.appendQueryParameter("show-tags", "contributor");
-       uriBuilder.appendQueryParameter("section", orderBy);
+        //uriBuilder.appendQueryParameter("section", sectionSelect);
         uriBuilder.appendQueryParameter("q", "music");
-        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("order-by", orderBy );
         uriBuilder.appendQueryParameter("from-date", "2015-01-01");
         uriBuilder.appendQueryParameter("api-key", "76b77837-8fda-4ee6-9e8d-9d3bedaaba62");
-
+        Log.v("NewsActivity", "url: " + uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
     }
 

@@ -20,21 +20,24 @@
 
     <string name="settings_business_label">Business</string>
     <string name="settings_business_value" >Business</string>
-   -->
+
 
     <string name="settings_section_label">Order by fadfa</string>
     <string name="settings_section_key" translatable="false">Section</string>
     <string name="settings_section_default" translatable="false">Music</string>
-
-
-
-
+    -->
 
     <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
-    <string name="settings_order_by_label">Order By </string>
-    <string name="settings_order_by_key" translatable="false">order_by test ämnen</string>
-    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_music_value</string>
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">newest</string>
 
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30]
+    <string name="settings_order_by_label">Order By </string>
+    <string name="settings_order_by_key" translatable="false">order_by </string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_music_value</string>
+    -->
     <!-- Label for order-by magnitude option [CHAR LIMIT=20] -->
     <string name="settings_order_by_music_label">Music</string>
     <string name="settings_order_by_music_value" translatable="false">music</string>
