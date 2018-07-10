@@ -133,10 +133,11 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         //uriBuilder.appendQueryParameter("section", sectionSelect);
-        uriBuilder.appendQueryParameter("q", "music");
-        uriBuilder.appendQueryParameter("order-by", orderBy );
-        uriBuilder.appendQueryParameter("from-date", "2015-01-01");
+        uriBuilder.appendQueryParameter("q", orderBy);
+        uriBuilder.appendQueryParameter("order-by", "newest" );
+        uriBuilder.appendQueryParameter("from-date", "2017-01-01");
         uriBuilder.appendQueryParameter("api-key", "76b77837-8fda-4ee6-9e8d-9d3bedaaba62");
+
         Log.v("NewsActivity", "url: " + uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
     }
